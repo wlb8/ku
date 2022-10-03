@@ -1,0 +1,49 @@
+<html>
+    <h>KU Tabs
+    </h>
+
+    <body>
+    <div id="tab-panel">
+        
+        <div data-tabname="Rock" id="Rock" hidden>Rock...</div>
+
+        <div data-tabname="Chalk" id="Chalk" hidden>Rock Chalk...</div>
+
+        <div data-tabname="JayHawk" id="JayHawk" hidden>Rock Chalk Jayhawk Go KU!</div>
+    </div>
+    
+
+    <script>
+        function asTab(node)
+        {
+            childs = node.children;
+            for (let i =0; i < childs.length; i++)
+            {
+                let button = document.createElement("button");
+                button.innerHTML = childs[i].dataset.tabname;
+                button.setAttribute("id", childs[i].dataset.tabname);
+                button.onclick = (event) => {
+
+                    let children = document.getElementById("tab-panel").children;
+
+                    for (let i = 0; i < children.length; i++) //hidding oens that are not active
+                    {
+                        let current = children[i];
+                        current.setAttribute("hidden", "hidden");
+                        console.log(current);
+                    }
+                    
+                    let name = event.target.id;
+                    let tab = document.getElementById(name);
+
+                    tab.setAttribute("active", "active");
+                    tab.removeAttribute("hidden");
+                }
+                document.body.appendChild(button);
+            } 
+        }
+
+        asTab(document.getElementById("tab-panel"));
+    </script>
+    </body>
+</html>
